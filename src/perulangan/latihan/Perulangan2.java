@@ -1,26 +1,18 @@
-//PERTEMUAN MINGGU KE-4
-
-package perulangan;
+package perulangan.latihan;
 import java.util.Scanner;
 
-public class Perulangan {
+public class Perulangan2 {
     public static void main(String[] args) {
-        //deklarasi dan inisialisasi
         Scanner inputUser = new Scanner(System.in);
-        int i = 1;
         int n;
 
-        //input nilai n
         System.out.print("Nilai n = ");
         n = inputUser.nextInt();
 
-        //perulangan
-        while(i <= 2 * n) {
+        for (int i = 1; i <= n * 2; i++) {
             if (i % 2 == 0) {
                 System.out.print(i + " ");
             }
-            i++;
         }
-
     }
 }
