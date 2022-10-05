@@ -11,7 +11,7 @@ public class Siakad {
 
         int inputPilihan;
         do {
-                System.out.println("===================");
+                System.out.println("\n===================");
                 System.out.println("|   MENU SIAKAD   |");
                 System.out.println("===================");
                 System.out.println("| 1 | Tambah Data |");
@@ -36,15 +36,19 @@ public class Siakad {
     public static void tambahData() {
         String nim;
         String nama;
+        Mahasiswa mahasiswa = new Mahasiswa();
         System.out.println("------------------------");
         System.out.println("| Silahkan tambah data |");
         System.out.println("------------------------");
         System.out.print("Nim : ");
         nim = inputUser.next();
+        mahasiswa.setNim(nim);
         inputUser.nextLine();
         System.out.print("Nama : ");
         nama = inputUser.nextLine();
-        dataMahasiswa.add(new Mahasiswa(nim, nama));
+        mahasiswa.setNama(nama);
+        dataMahasiswa.add(mahasiswa);
+
 
         System.out.println();
     }
