@@ -7,27 +7,30 @@ public class Siakad {
     static ArrayList<Mahasiswa> dataMahasiswa = new ArrayList<>();
     static Scanner inputUser = new Scanner(System.in);
 
+    static int inputPilihan;
     public static void main(String[] args) {
 
-        int inputPilihan;
+
         do {
-                System.out.println("\n===================");
-                System.out.println("|   MENU SIAKAD   |");
-                System.out.println("===================");
-                System.out.println("| 1 | Tambah Data |");
-                System.out.println("| 2 | Lihat Data  |");
-                System.out.println("| 3 | Keluar      |");
-                System.out.println("===================");
-                System.out.print("Pilihan Menu : ");
-                inputPilihan = inputUser.nextInt();
-                System.out.println();
+            System.out.println("\n====================");
+            System.out.println("|   MENU SIAKAD    |");
+            System.out.println("====================");
+            System.out.println("| 1 | Tambah Data  |");
+            System.out.println("| 2 | Lihat Data   |");
+            System.out.println("| 3 | Urutkan Data |");
+            System.out.println("| 4 | Keluar       |");
+            System.out.println("====================");
+            System.out.print("Pilihan Menu : ");
+            inputPilihan = inputUser.nextInt();
+            System.out.println();
             switch (inputPilihan) {
                 case 1 -> tambahData();
                 case 2 -> lihatData();
-                case 3 -> {
-                            System.out.println("Terima kasih");
-                            System.exit(0);
-                        }
+                case 3 -> urutkanData();
+                case 4 -> {
+                    System.out.println("Terima kasih");
+                    System.exit(0);
+                }
                 default -> System.out.println("Pilihan tidak sesuai");
             }
         } while (true);
@@ -48,8 +51,6 @@ public class Siakad {
         nama = inputUser.nextLine();
         mahasiswa.setNama(nama);
         dataMahasiswa.add(mahasiswa);
-
-
         System.out.println();
     }
 
@@ -65,4 +66,51 @@ public class Siakad {
             System.out.println("-------------------------------------------");
         }
     }
+
+    public static void urutkanData() {
+        do {
+            System.out.println("------------------------------");
+            System.out.println("| Pilih Algoritma Pengurutan |");
+            System.out.println("------------------------------");
+            System.out.println("| 1 | Exchange Sort          |");
+            System.out.println("| 2 | Selection Sort         |");
+            System.out.println("| 3 | Quick Sort             |");
+            System.out.println("| 4 | Insertion Sort         |");
+            System.out.println("| 5 | Bubble Sort            |");
+            System.out.println("| 6 | Shell Sort             |");
+            System.out.println("| 7 | Binary Insertion Sort  |");
+            System.out.println("| 8 | Batal                  |");
+            System.out.println("------------------------------");
+            System.out.print("Pilihan Anda : ");
+            inputPilihan = inputUser.nextInt();
+            System.out.println();
+            switch (inputPilihan) {
+                case 1 -> exchangeSort();
+//                case 2 -> selectionSort();
+//                case 3 -> quickSort();
+//                case 4 -> insertionSort();
+//                case 5 -> bubbleSort();
+//                case 6 -> shellSort();
+//                case 7 -> binaryInsertionSort();
+                case 8 -> main(null);
+                default -> System.out.println("Pilihan tidak sesuai");
+            }
+        } while (inputPilihan < 1 || inputPilihan > 8);
+    }
+
+    public static void exchangeSort() {
+        System.out.println("Running Exchange Sort...");
+        for (int i = 0; i < (dataMahasiswa.size()-1); i++) {
+            for (int j = i+1; j < dataMahasiswa.size(); j++) {
+                if (dataMahasiswa.get(i).getNim().compareTo(dataMahasiswa.get(j).getNim()) >= 1) {
+                    Mahasiswa temp = dataMahasiswa.get(i);
+                    dataMahasiswa.set(i, dataMahasiswa.get(j));
+                    dataMahasiswa.set(j, temp);
+                }
+            }
+        }
+        System.out.println("Exchange Sort Successfully!");
+    }
+
+
 }
