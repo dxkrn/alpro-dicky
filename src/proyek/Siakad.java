@@ -54,16 +54,15 @@ public class Siakad {
     }
 
     public static void lihatData() {
-        System.out.println("------------------------");
-        System.out.println("|    Data Mahasiswa    |");
-        System.out.println("------------------------");
+        System.out.println("===========================================");
+        System.out.println("|             Data Mahasiswa              |");
+        System.out.println("===========================================");
+        System.out.println("| NO |     NIM     |         NAMA         |");
+        System.out.println("===========================================");
 
         for(int i = 0; i < dataMahasiswa.size(); i++) {
-            System.out.println("No. " + (i+1));
-            System.out.print("\tNim : " + dataMahasiswa.get(i).getNim());
-            System.out.println();
-            System.out.print("\tNama : " + dataMahasiswa.get(i).getNama());
-            System.out.println();
+            System.out.printf("| %2d | %-11s | %-20s |\n", (i+1), dataMahasiswa.get(i).getNim(), dataMahasiswa.get(i).getNama());
+            System.out.println("-------------------------------------------");
         }
     }
 }
