@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class Siakad {
 
     static ArrayList<Mahasiswa> dataMahasiswa = new ArrayList<>();
+    static int jumlahData = 0;
     static Scanner inputUser = new Scanner(System.in);
 
     static int inputPilihan;
     public static void main(String[] args) {
-
-
         do {
+            System.out.println("Jumlah data : " + jumlahData);
             System.out.println("\n====================");
             System.out.println("|   MENU SIAKAD    |");
             System.out.println("====================");
@@ -21,7 +21,8 @@ public class Siakad {
             System.out.println("| 4 | Cari Data    |");
             System.out.println("| 5 | Edit Data    |");
             System.out.println("| 6 | Hapus Data   |");
-            System.out.println("| 7 | Keluar       |");
+            System.out.println("| 7 | UAS          |");
+            System.out.println("| 8 | Keluar       |");
             System.out.println("====================");
             System.out.print("Pilihan Menu : ");
             inputPilihan = inputUser.nextInt();
@@ -33,7 +34,8 @@ public class Siakad {
                 case 4 -> cariData();
                 case 5 -> editData();
                 case 6 -> hapusData();
-                case 7 -> {
+                case 7 -> uas();
+                case 8 -> {
                     System.out.println("Terima kasih");
                     System.exit(0);
                 }
@@ -59,6 +61,9 @@ public class Siakad {
         mahasiswa.setNama(nama);
         dataMahasiswa.add(mahasiswa);
         System.out.println();
+
+        //update jumlah data
+        jumlahData = dataMahasiswa.size();
     }
 
     //Lihat Data
@@ -124,6 +129,9 @@ public class Siakad {
                 default -> System.out.println("Pilihan tidak sesuai");
             }
         } while (inputPilihan < 1 || inputPilihan > 3);
+
+        //update jumlah data
+        jumlahData = dataMahasiswa.size();
     }
 
     public static void hapusSingleData(){
@@ -396,4 +404,29 @@ public class Siakad {
         return -1;
     }
 
+    //UAS
+    public static void uas() {
+        if (jumlahData == 0) {
+            System.out.println("Tidak ada data");
+        } else {
+            int jarak = jumlahData, susut = 13, urut = 0;
+            while (urut == 0) {
+                jarak = (jarak * 10) / susut;
+                if (jarak <= 1) {
+                    jarak = 1;
+                    urut = 1;
+                }
+                for (int i = 0; (i + jarak) < jumlahData; i++) {
+                    if (dataMahasiswa.get(i).getNim().compareTo(dataMahasiswa.get(i + jarak).getNim()) > 0) {
+                        Mahasiswa temp = dataMahasiswa.get(i);
+                        dataMahasiswa.set(i, dataMahasiswa.get(i + jarak));
+                        dataMahasiswa.set((i + jarak), temp);
+                        urut = 0;
+                    }
+                }
+
+            }
+            System.out.println("Data telah diurutkan. Silahkan tampilkan data!");
+        }
+    }
 }
