@@ -87,7 +87,7 @@ public class Siakad {
             switch (inputPilihan) {
                 case 1 -> exchangeSort();
                 case 2 -> selectionSort();
-//                case 3 -> quickSort();
+                case 3 -> quickSort();
 //                case 4 -> insertionSort();
 //                case 5 -> bubbleSort();
 //                case 6 -> shellSort();
@@ -116,6 +116,7 @@ public class Siakad {
         System.out.println("Exchange Sort Successfully!");
     }
 
+
     //Selection Sort
     public static void selectionSort() {
         System.out.println("Running Selection Sort...");
@@ -135,5 +136,43 @@ public class Siakad {
         System.out.println("Selection Sort Successfully!");
     }
 
+
+    //Quick Sort
+    public static int partition(ArrayList<Mahasiswa> dataList, int begin, int end) {
+        int pivot = Integer.parseInt(dataList.get(end).getNim());
+        int i = (begin - 1);
+
+        for (int j = begin; j < end; j++) {
+            if (Integer.parseInt(dataMahasiswa.get(j).getNim()) <= pivot) {
+                i++;
+
+                Mahasiswa temp = dataList.get(i);
+                dataList.set(i, dataList.get(j));
+                dataList.set(j, temp);
+            }
+        }
+
+        Mahasiswa temp = dataList.get(i+1);
+        dataList.set((i+1), dataList.get(end));
+        dataList.set(end, temp);
+
+        return i+1;
+    }
+
+    public static void quickSorting(ArrayList<Mahasiswa> dataList, int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(dataList, begin, end);
+
+            quickSorting(dataList, begin, partitionIndex-1);
+            quickSorting(dataList, partitionIndex+1, end);
+
+        }
+    }
+
+    public static void quickSort(){
+        System.out.println("Running Quick Sort...");
+        quickSorting(dataMahasiswa, 0, dataMahasiswa.size()-1);
+        System.out.println("Quick Sort Successfully!");
+    }
 
 }
