@@ -31,7 +31,7 @@ public class Siakad {
                 case 2 -> lihatData();
                 case 3 -> urutkanData();
                 case 4 -> cariData();
-//                case 5 -> editData();
+                case 5 -> editData();
                 case 6 -> hapusData();
                 case 7 -> {
                     System.out.println("Terima kasih");
@@ -76,7 +76,33 @@ public class Siakad {
     }
 
     //Edit Data
-
+    public static void editData(){
+        System.out.println("---------------------");
+        System.out.println("|     Edit Data     |");
+        System.out.println("---------------------");
+        System.out.print("Masukkan NIM : ");
+        String inputNIM = inputUser.next();
+        inputUser.nextLine();
+        int indexData = linearSearch(dataMahasiswa, inputNIM);
+        System.out.println("===========================================");
+        System.out.println("|             Data Mahasiswa              |");
+        System.out.println("===========================================");
+        System.out.println("| NO |     NIM     |         NAMA         |");
+        System.out.println("===========================================");
+        System.out.printf("| %2d | %-11s | %-20s |\n", (indexData+1), dataMahasiswa.get(indexData).getNim(), dataMahasiswa.get(indexData).getNama());
+        System.out.println("-------------------------------------------");
+        System.out.print("Masukkan Nama baru : ");
+        String inputNama = inputUser.nextLine();
+        System.out.println("Simpan perubahan?[Y/T]");
+        String inputKonfirmasi = inputUser.next();
+        if (inputKonfirmasi.charAt(0) == 'Y' || inputKonfirmasi.charAt(0) == 'y') {
+            dataMahasiswa.get(indexData).setNama(inputNama);
+            System.out.println("Alert: Edit data berhasil!");
+        } else {
+            System.out.println("Alert: Edit data gagal!");
+            main(null);
+        }
+    }
 
     //Hapus Data
     public static void hapusData() {
