@@ -86,7 +86,7 @@ public class Siakad {
             System.out.println();
             switch (inputPilihan) {
                 case 1 -> exchangeSort();
-//                case 2 -> selectionSort();
+                case 2 -> selectionSort();
 //                case 3 -> quickSort();
 //                case 4 -> insertionSort();
 //                case 5 -> bubbleSort();
@@ -98,6 +98,10 @@ public class Siakad {
         } while (inputPilihan < 1 || inputPilihan > 8);
     }
 
+
+    //SORTING
+
+    //Exchange Sort
     public static void exchangeSort() {
         System.out.println("Running Exchange Sort...");
         for (int i = 0; i < (dataMahasiswa.size()-1); i++) {
@@ -110,6 +114,25 @@ public class Siakad {
             }
         }
         System.out.println("Exchange Sort Successfully!");
+    }
+
+    //Selection Sort
+    public static void selectionSort() {
+        System.out.println("Running Selection Sort...");
+        for (int i = 0; i < (dataMahasiswa.size() - 1); i++) {
+            int index = i;
+            for (int j = i + 1; j < dataMahasiswa.size(); j++) {
+                if (Integer.parseInt(dataMahasiswa.get(j).getNim()) < Integer.parseInt(dataMahasiswa.get(index).getNim())) {
+                    index = j;
+                }
+            }
+
+            Mahasiswa tempMahasiswa = dataMahasiswa.get(index);
+
+            dataMahasiswa.set(index, dataMahasiswa.get(i));
+            dataMahasiswa.set(i, tempMahasiswa);
+        }
+        System.out.println("Selection Sort Successfully!");
     }
 
 
