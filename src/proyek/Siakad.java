@@ -171,11 +171,9 @@ public class Siakad {
             System.out.println("| 1 | Exchange Sort          |");
             System.out.println("| 2 | Selection Sort         |");
             System.out.println("| 3 | Quick Sort             |");
-            System.out.println("| 4 | Insertion Sort         |");
-            System.out.println("| 5 | Bubble Sort            |");
-            System.out.println("| 6 | Shell Sort             |");
-            System.out.println("| 7 | Binary Insertion Sort  |");
-            System.out.println("| 8 | Batal                  |");
+            System.out.println("| 4 | Bubble Sort            |");
+            System.out.println("| 5 | Shell Sort             |");
+            System.out.println("| 6 | Batal                  |");
             System.out.println("------------------------------");
             System.out.print("Pilihan Anda : ");
             inputPilihan = inputUser.nextInt();
@@ -184,14 +182,12 @@ public class Siakad {
                 case 1 -> exchangeSort();
                 case 2 -> selectionSort();
                 case 3 -> quickSort();
-//                case 4 -> insertionSort();
-//                case 5 -> bubbleSort();
-//                case 6 -> shellSort();
-//                case 7 -> binaryInsertionSort();
-                case 8 -> main(null);
+                case 4 -> bubbleSort();
+                case 5 -> shellSort();
+                case 6 -> main(null);
                 default -> System.out.println("Pilihan tidak sesuai");
             }
-        } while (inputPilihan < 1 || inputPilihan > 8);
+        } while (inputPilihan < 1 || inputPilihan > 6);
     }
 
 
@@ -271,8 +267,34 @@ public class Siakad {
         System.out.println("Quick Sort Successfully!");
     }
 
+    //Bubble Sort
+    public static void bubbleSort() {
+        int n = dataMahasiswa.size();
+        for (int i = 0; i < (n-1); i++) {
+            for (int j = 0; j < (n - i - 1); j++) {
+                if (Integer.parseInt(dataMahasiswa.get(j).getNim()) > Integer.parseInt(dataMahasiswa.get(j + 1).getNim())) {
+                    Mahasiswa temp = dataMahasiswa.get(j);
+                    dataMahasiswa.set(j, dataMahasiswa.get(j + 1));
+                    dataMahasiswa.set((j + 1), temp);
+                }
+            }
+        }
+    }
 
-
+    //ShellSort
+    public static void shellSort() {
+        int n = dataMahasiswa.size();
+        for (int gap = n/2; gap > 0; gap /= 2) {
+            for (int i = gap; i < n; i += 1) {
+                Mahasiswa temp = dataMahasiswa.get(i);
+                int j;
+                for (j = i; j >= gap && Integer.parseInt(dataMahasiswa.get(j - gap).getNim()) > Integer.parseInt(temp.getNim()); j -= gap) {
+                    dataMahasiswa.set(j, dataMahasiswa.get(j - gap));
+                }
+                dataMahasiswa.set(j, temp);
+            }
+        }
+    }
 
     //SEARCH
 
