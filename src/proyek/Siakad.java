@@ -409,9 +409,12 @@ public class Siakad {
         if (jumlahData == 0) {
             System.out.println("Tidak ada data");
         } else {
-            int jarak = jumlahData, susut = 13, urut = 0;
+//            int jarak = jumlahData, susut = 13, urut = 0;
+            int jarak = jumlahData, urut = 0;
+//            double susut = Math.random() * 20;
+            double susut = 51;
             while (urut == 0) {
-                jarak = (jarak * 10) / susut;
+                jarak = (jarak * 10) / (int)susut;
                 if (jarak <= 1) {
                     jarak = 1;
                     urut = 1;
